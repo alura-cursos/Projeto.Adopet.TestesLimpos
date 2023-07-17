@@ -9,7 +9,7 @@ namespace Alura.Adopet.Console.Util
 {
     internal class LeitorDeArquivo
     {
-        public List<Pet> RealizaLeitura(string caminhoDoArquivoASerLido)
+        public IEnumerable<Pet> RealizaLeitura(string caminhoDoArquivoASerLido)
         {
             List<Pet> listaDePet = new List<Pet>();
             using (StreamReader sr = new StreamReader(caminhoDoArquivoASerLido))

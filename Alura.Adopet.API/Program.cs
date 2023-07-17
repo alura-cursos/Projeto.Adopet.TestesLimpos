@@ -19,11 +19,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 
 builder.Services.AddScoped<IEventoService,EventoService>()               
                 .AddDbContext<DataBaseContext>(opt => {
-                    opt.UseInMemoryDatabase("AdopetDB");
-                    opt.UseLoggerFactory(LoggerFactory.Create(builder =>
-                    {
-                        builder.AddSerilog();
-                    }));
+                    opt.UseInMemoryDatabase("AdopetDB");                 
                 });
 
 //Habilitando o swagger
