@@ -14,7 +14,7 @@ namespace Alura.Adopet.Testes
     public class ImportTest
     {
         [Fact]
-        public async Task Test01()
+        public async Task QuandoAPIEstiverNoArOImportDeveFuncionar()
         {
             //Arrange
             var leitorDeArquivo = new Mock<LeitorDeArquivo>(MockBehavior.Default,
@@ -29,7 +29,7 @@ namespace Alura.Adopet.Testes
 
             var httpClient = new AdopetAPIClientFactory().CreateClient("API");
             var httpClientPet = new HttpClientPet(httpClient);
-            var import = new Import(httpClientPet,leitorDeArquivo.Object);
+            var import = new Import(httpClientPet, leitorDeArquivo.Object);
             string[] args = { "import", "lista.csv" };
             //Act
             await import.ExecutarAsync(args);

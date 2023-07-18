@@ -9,10 +9,12 @@ namespace Alura.Adopet.Console.Comandos
     public class Import:IComando
     {
         private readonly HttpClientPet clientpet;
+        private readonly LeitorDeArquivo leitorDeArquivo;
 
-        public Import(HttpClientPet clientpet)
+        public Import(HttpClientPet clientpet,LeitorDeArquivo leitorDeArquivo)
         {
             this.clientpet = clientpet;
+            this.leitorDeArquivo = leitorDeArquivo;
         }
         public async Task ExecutarAsync(string[] args)
         {
@@ -21,8 +23,8 @@ namespace Alura.Adopet.Console.Comandos
 
         private async Task ImportacaoArquivoPetAsync(string caminhoDoArquivoDeImportacao)
         {
-            var leitor = new LeitorDeArquivo(caminhoDoArquivoDeImportacao);
-            IEnumerable<Pet> listaDePet = leitor.RealizaLeitura();
+         
+            IEnumerable<Pet> listaDePet = leitorDeArquivo.RealizaLeitura();
             foreach (var pet in listaDePet)
             {
                 System.Console.WriteLine(pet);
