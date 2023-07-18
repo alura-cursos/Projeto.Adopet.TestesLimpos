@@ -81,9 +81,7 @@ namespace Alura.Adopet.Testes
 
         [Fact]
         public async Task QuandoAPIForaDeveRetornarUmaExcecao()
-        {
-
-            //Arrange
+        {     
             //Arrange
             var handlerMock = new Mock<HttpMessageHandler>();
 
