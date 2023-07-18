@@ -21,8 +21,8 @@ namespace Alura.Adopet.Console.Comandos
 
         private async Task ImportacaoArquivoPetAsync(string caminhoDoArquivoDeImportacao)
         {
-            var leitor = new LeitorDeArquivo();
-            IEnumerable<Pet> listaDePet = leitor.RealizaLeitura(caminhoDoArquivoDeImportacao);
+            var leitor = new LeitorDeArquivo(caminhoDoArquivoDeImportacao);
+            IEnumerable<Pet> listaDePet = leitor.RealizaLeitura();
             foreach (var pet in listaDePet)
             {
                 System.Console.WriteLine(pet);

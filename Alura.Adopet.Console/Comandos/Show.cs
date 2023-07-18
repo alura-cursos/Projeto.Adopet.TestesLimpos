@@ -14,8 +14,8 @@ namespace Alura.Adopet.Console.Comandos
 
         private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)
         {
-            LeitorDeArquivo leitor = new LeitorDeArquivo();
-            var listaDepets = leitor.RealizaLeitura(caminhoDoArquivoASerExibido);
+            LeitorDeArquivo leitor = new LeitorDeArquivo(caminhoDoArquivoASerExibido);
+            var listaDepets = leitor.RealizaLeitura();
             foreach (var pet in listaDepets)
             {
                 System.Console.WriteLine(pet);
