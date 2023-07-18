@@ -13,7 +13,7 @@ namespace Alura.Adopet.Console.Servicos
             this.client = client;
         }
 
-        public Task CreatePetAsync(Pet pet)
+        public virtual Task CreatePetAsync(Pet pet)
         {
             return client.PostAsJsonAsync("pet/add", pet);
         }
