@@ -83,8 +83,7 @@ namespace Alura.Adopet.Testes
         [Fact]
         public async Task QuandoListaNaoVaziaDeveChamarCreatePetAsync()
         {
-            //Arrange
-       
+            //Arrange       
             var listaDePet = new List<Pet>();
             var pet = new Pet(new Guid("456b24f4-19e2-4423-845d-4a80e8854a99"),
                   "Lima", TipoPet.Cachorro);
@@ -107,6 +106,33 @@ namespace Alura.Adopet.Testes
             //Assert
             httpClientPet.Verify(_ => _.CreatePetAsync(It.IsAny<Pet>()), Times.Once);
 
+        }
+
+        [Fact]
+        public async Task QuandoPetEstiverNoArquivoDeveSerImportado()
+        {
+            //Arrange       
+            var listaDePet = new List<Pet>();
+            var pet = new Pet(new Guid("456b24f4-19e2-4423-845d-4a80e8854a99"),
+                  "Lima", TipoPet.Cachorro);
+            listaDePet.Add(pet);
+
+            var leitor = new Mock<LeitorDeArquivo>(MockBehavior.Strict, It.IsAny<string>());
+
+            var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default,
+                          It.IsAny<HttpClient>());
+
+            leitor.Setup(_ => _.RealizaLeitura()).Returns(listaDePet);
+
+            string[] args = { "import", "lista.csv" };
+            var import = new Import(httpClientPet.Object,
+                leitor.Object);
+
+            //Act
+           var resultado = await import.ExecutarAsync(args);
+
+            //Assert
+            
 
         }
 
