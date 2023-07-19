@@ -132,6 +132,7 @@ namespace Alura.Adopet.Testes
            var resultado = await import.ExecutarAsync(args);
 
             //Assert
+            Assert.True(resultado.IsSuccess);
             
 
         }

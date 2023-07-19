@@ -1,5 +1,6 @@
 ﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
+using FluentResults;
 
 namespace Alura.Adopet.Console.Comandos
 {
@@ -13,12 +14,12 @@ namespace Alura.Adopet.Console.Comandos
         {
             this.clientpet = clientpet;
         }
-        public Task ExecutarAsync(string[] args)
+        public Task<Result> ExecutarAsync(string[] args)
         {
             return this.ListaDadosPetsDaAPIAsync();
         }
 
-        private async Task ListaDadosPetsDaAPIAsync()
+        private async Task<Result> ListaDadosPetsDaAPIAsync()
         {
 
             IEnumerable<Pet>? pets = await clientpet.ListPetsAsync();
@@ -27,6 +28,7 @@ namespace Alura.Adopet.Console.Comandos
             {
                 System.Console.WriteLine(pet);
             }
+            return Result.Ok();
         }
 
     }
