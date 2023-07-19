@@ -2,6 +2,7 @@
 using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
 using Alura.Adopet.Console.Util;
+using FluentResults;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -129,11 +130,12 @@ namespace Alura.Adopet.Testes
                 leitor.Object);
 
             //Act
-           var resultado = await import.ExecutarAsync(args);
+            var resultado = await import.ExecutarAsync(args);
 
             //Assert
             Assert.True(resultado.IsSuccess);
-            
+            var sucesso = (SuccessWithPets)resultado.Successes[0];
+            Assert.Single(sucesso.Data);
 
         }
 

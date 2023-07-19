@@ -38,7 +38,7 @@ namespace Alura.Adopet.Console.Comandos
                     System.Console.WriteLine(ex.Message);
                 }
             }
-            return Result.Ok();
+            return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet));
             
         }
     }
