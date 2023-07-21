@@ -15,7 +15,6 @@ Dictionary<string, IComando> comandosDoSistema = new()
     {"show",new Show() },
 };
 
-
 string comando = args[0].Trim();
 if (comandosDoSistema.ContainsKey(comando))
 {
