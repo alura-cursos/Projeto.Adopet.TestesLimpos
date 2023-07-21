@@ -4,6 +4,7 @@ using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,7 +43,19 @@ namespace Alura.Adopet.Console.UI
                 case SuccessWithPets s:
                     ExibirPets(s);
                     break;
+                case SuccessWithDocs d:
+                    ExibeDocumentacao(d);
+                    break;                
+            }
+        }
 
+        private static void ExibeDocumentacao(SuccessWithDocs documentacaoComando)
+        {
+            System.Console.WriteLine($"Adopet (1.0) - Aplicativo de linha de comando (CLI).");
+            System.Console.WriteLine($"Realiza a importação em lote de um arquivos de pets.\n");
+            foreach (var doc in documentacaoComando.Documentacao)
+            {
+                System.Console.WriteLine(doc);
             }
         }
 
