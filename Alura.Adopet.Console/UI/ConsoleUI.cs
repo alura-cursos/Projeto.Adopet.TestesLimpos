@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.Comandos;
+using Alura.Adopet.Console.Util;
 using FluentResults;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Alura.Adopet.Console.UI
                 }
                 else
                 {
-                    
+                    ExibeSucesso(result);
                 }
 
             }
@@ -31,6 +32,27 @@ namespace Alura.Adopet.Console.UI
                 System.Console.ForegroundColor = ConsoleColor.White;
             }
 
+        }
+
+        private static void ExibeSucesso(Result result)
+        {
+            var sucesso = result.Successes.First();
+            switch(sucesso)
+            {
+                case SuccessWithPets s:
+                    ExibirPets(s);
+                    break;
+
+            }
+        }
+
+        private static void ExibirPets(SuccessWithPets sucesso)
+        {
+            foreach (var pet in sucesso.Data)
+            {
+                System.Console.WriteLine(pet);
+            }
+            System.Console.WriteLine(sucesso.Message);
         }
 
         private static void ExibeFalha(Result result)

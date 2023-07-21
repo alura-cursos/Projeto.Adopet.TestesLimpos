@@ -11,9 +11,10 @@ namespace Alura.Adopet.Console.Util
     public class SuccessWithPets:Success
     {
         public IEnumerable<Pet> Data { get;  }
-        public SuccessWithPets(IEnumerable<Pet> data)
+        public SuccessWithPets(IEnumerable<Pet> data,string mensagem)
         {
             Data = data;
+            this.Message = mensagem;
         }      
 
     }
