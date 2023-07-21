@@ -24,13 +24,12 @@ namespace Alura.Adopet.Console.Comandos
 
         private async Task<Result> ImportacaoArquivoPetAsync(string caminhoDoArquivoDeImportacao)
         {
-
             try
             {
                 IEnumerable<Pet> listaDePet = leitorDeArquivo.RealizaLeitura();
                 foreach (var pet in listaDePet)
                 {
-                    System.Console.WriteLine(pet);                
+                              
                     await clientpet.CreatePetAsync(pet);                 
                    
                 }
