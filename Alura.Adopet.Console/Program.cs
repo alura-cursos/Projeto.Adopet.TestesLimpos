@@ -5,7 +5,7 @@ using Alura.Adopet.Console.Util;
 using FluentResults;
 
 var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
-var leitorDeArquivos = new LeitorDeArquivo(args[1]);
+LeitorDeArquivo leitorDeArquivos = args.Length == 2 ?new(args[1]):null;
 
 Dictionary<string, IComando> comandosDoSistema = new()
 {

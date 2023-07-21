@@ -9,20 +9,12 @@ namespace Alura.Adopet.Console.Comandos
     {
         public Task<Result> ExecutarAsync(string[] args)
         {
-            this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]); 
-            return Task.FromResult(Result.Ok());
+            LeitorDeArquivo leitor = new LeitorDeArquivo(caminhoDoArquivoASerLido: args[1]);
+            var listaDepets = leitor.RealizaLeitura();           
+
+            return Task.FromResult(Result.Ok().
+                WithSuccess(new SuccessWithPets(listaDepets, "Leitura do arquivo concluída!")));
         }
 
-        private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)
-        {
-            LeitorDeArquivo leitor = new LeitorDeArquivo(caminhoDoArquivoASerExibido);
-            var listaDepets = leitor.RealizaLeitura();
-            foreach (var pet in listaDepets)
-            {
-                System.Console.WriteLine(pet);
-            }
-
-
-        }
     }
 }
