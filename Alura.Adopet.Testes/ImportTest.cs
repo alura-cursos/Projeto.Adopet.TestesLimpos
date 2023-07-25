@@ -17,11 +17,8 @@ namespace Alura.Adopet.Testes
         public async void QuandoListaVaziaNaoDeveChamarCreatPetAsync()
         {
             //Arrange
-            var leitorDeArquivo = new Mock<LeitorDeArquivo>(MockBehavior.Default,
-                It.IsAny<string>());
-            var listaDePet = new List<Pet>();          
-
-            leitorDeArquivo.Setup(_ => _.RealizaLeitura()).Returns(listaDePet);
+            List<Pet> listaDePet = new();
+            var leitorDeArquivo = LeitorDeArquivosMock.CriaMock(listaDePet);
 
             var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default,
                 It.IsAny<HttpClient>());
