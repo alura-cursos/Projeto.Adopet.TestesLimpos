@@ -9,7 +9,7 @@ Dictionary<string, IComando> comandosDoSistema = new()
     {"help",new Help() },
     {"import",new Import(httpClientPet,leitorDeArquivos)},
     {"list",new List(httpClientPet) },
-    {"show",new Show() },
+    {"show",new Show(leitorDeArquivos) },
 };
 
 Console.ForegroundColor = ConsoleColor.Green;
