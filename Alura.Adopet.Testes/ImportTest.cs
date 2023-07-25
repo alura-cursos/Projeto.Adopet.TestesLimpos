@@ -1,14 +1,7 @@
 ﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Modelos;
-using Alura.Adopet.Console.Servicos;
-using Alura.Adopet.Console.Util;
 using Alura.Adopet.Testes.Builder;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alura.Adopet.Testes
 {
@@ -19,10 +12,9 @@ namespace Alura.Adopet.Testes
         {
             //Arrange
             List<Pet> listaDePet = new();
-            var leitorDeArquivo = LeitorDeArquivosMockBuilder.CriaMock(listaDePet);
+            var leitorDeArquivo = LeitorDeArquivosMockBuilder.GetMock(listaDePet);
 
-            var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default,
-                It.IsAny<HttpClient>());
+            var httpClientPet = HttpClientPetMockBuilder.GetMock();
 
             var import = new Import(httpClientPet.Object, leitorDeArquivo.Object);
             string[] args = { "import", "lista.csv" };
@@ -39,11 +31,10 @@ namespace Alura.Adopet.Testes
         {
             //Arrange
             List<Pet> listaDePet = new();
-            var leitor = LeitorDeArquivosMockBuilder.CriaMock(listaDePet);
+            var leitor = LeitorDeArquivosMockBuilder.GetMock(listaDePet);
             leitor.Setup(_ => _.RealizaLeitura()).Throws<FileNotFoundException>();
 
-            var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default,
-                It.IsAny<HttpClient>());
+            var httpClientPet = HttpClientPetMockBuilder.GetMock();
 
             string[] args = { "import", "lista.csv" };
 
