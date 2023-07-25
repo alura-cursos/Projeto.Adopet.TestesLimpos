@@ -17,6 +17,10 @@ namespace Alura.Adopet.Console.Util
 
         public virtual List<Pet> RealizaLeitura()
         {
+            if (string.IsNullOrEmpty(this.caminhoDoArquivoASerLido))
+            {
+                return null;
+            }
             List<Pet> listaDePet = new List<Pet>();
             using (StreamReader sr = new StreamReader(caminhoDoArquivoASerLido))
             {

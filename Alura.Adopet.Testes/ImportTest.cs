@@ -2,6 +2,7 @@
 using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
 using Alura.Adopet.Console.Util;
+using Alura.Adopet.Testes.Builder;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Alura.Adopet.Testes
         {
             //Arrange
             List<Pet> listaDePet = new();
-            var leitorDeArquivo = LeitorDeArquivosMock.CriaMock(listaDePet);
+            var leitorDeArquivo = LeitorDeArquivosMockBuilder.CriaMock(listaDePet);
 
             var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default,
                 It.IsAny<HttpClient>());
@@ -32,5 +33,25 @@ namespace Alura.Adopet.Testes
             //Assert
             httpClientPet.Verify(_=>_.CreatePetAsync(It.IsAny<Pet>()),Times.Never);
         }
+
+        [Fact]
+        public async Task QuandoArquivoNaoExistenteDeveGerarException()
+        {
+            //Arrange
+            List<Pet> listaDePet = new();
+            var leitor = LeitorDeArquivosMockBuilder.CriaMock(listaDePet);
+            leitor.Setup(_ => _.RealizaLeitura()).Throws<FileNotFoundException>();
+
+            var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default,
+                It.IsAny<HttpClient>());
+
+            string[] args = { "import", "lista.csv" };
+
+            var import = new Import(httpClientPet.Object, leitor.Object);
+
+            //Act+Assert
+            await Assert.ThrowsAnyAsync<Exception>(() => import.ExecutarAsync(args));
+        }
+
     }
 }
