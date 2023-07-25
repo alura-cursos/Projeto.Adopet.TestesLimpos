@@ -68,7 +68,6 @@ namespace Alura.Adopet.Testes
 
             var httpClient = new Mock<HttpClient>(MockBehavior.Default, handlerMock.Object);
             httpClient.Object.BaseAddress = new Uri("http://localhost:5057");
-
             var clientePet = new HttpClientPet(httpClient.Object);
 
             //Act

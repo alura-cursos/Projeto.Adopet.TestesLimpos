@@ -1,11 +1,13 @@
 ﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Servicos;
+using Alura.Adopet.Console.Util;
 
 var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
+var leitorDeArquivos = new LeitorDeArquivo(caminhoDoArquivoASerLido: args[1]);
 Dictionary<string, IComando> comandosDoSistema = new()
 {
     {"help",new Help() },
-    {"import",new Import(httpClientPet)},
+    {"import",new Import(httpClientPet,leitorDeArquivos)},
     {"list",new List(httpClientPet) },
     {"show",new Show() },
 };
