@@ -26,21 +26,26 @@ namespace Alura.Adopet.Console.Comandos
 
         private async Task<Result> ImportacaoArquivoPetAsync(string caminhoDoArquivoDeImportacao)
         {
-            List<Pet> listaDePet = leitor.RealizaLeitura();
-            foreach (var pet in listaDePet)
+            try
             {
-                System.Console.WriteLine(pet);
-                try
-                {                    
-                    await clientPet.CreatePetAsync(pet);
-                }
-                catch (Exception ex)
+                List<Pet> listaDePet = leitor.RealizaLeitura();
+                foreach (var pet in listaDePet)
                 {
-                    System.Console.WriteLine(ex.Message);
+                   System.Console.WriteLine(pet);                  
+                   await clientPet.CreatePetAsync(pet);               
                 }
+                System.Console.WriteLine("Importação concluída!");
+                return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet));
             }
-            System.Console.WriteLine("Importação concluída!");
-            return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet));
+            catch (Exception exception)
+            {
+
+                return Result.Fail(new Error("Importação falhou!").CausedBy(exception));
+            }
+            
+            
+            
+            
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Alura.Adopet.Testes
         }
 
         [Fact]
-        public async Task QuandoArquivoNaoExistenteDeveGerarException()
+        public async Task QuandoArquivoNaoExistenteDeveGerarFalha()
         {
             //Arrange
             List<Pet> listaDePet = new();
@@ -41,8 +41,11 @@ namespace Alura.Adopet.Testes
 
             var import = new Import(httpClientPet.Object, leitor.Object);
 
-            //Act+Assert
-            await Assert.ThrowsAnyAsync<Exception>(() => import.ExecutarAsync(args));
+            //Act
+             var resultado = await import.ExecutarAsync(args);
+
+            //Assert
+            Assert.True(resultado.IsFailed);
         }
 
         [Fact]
