@@ -1,5 +1,6 @@
 ﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Util;
 using Alura.Adopet.Testes.Builder;
 using Moq;
 
@@ -64,6 +65,8 @@ namespace Alura.Adopet.Testes
 
             //Assert
             Assert.True(resultado.IsSuccess);
+            var sucesso = (SuccessWithPets)resultado.Successes[0];
+            Assert.Equal("Lima",sucesso.Data.First().Nome);
         }
 
 

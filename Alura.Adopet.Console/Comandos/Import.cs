@@ -40,7 +40,7 @@ namespace Alura.Adopet.Console.Comandos
                 }
             }
             System.Console.WriteLine("Importação concluída!");
-            return Result.Ok();
+            return Result.Ok().WithSuccess(new SuccessWithPets(listaDePet));
         }
     }
 }
