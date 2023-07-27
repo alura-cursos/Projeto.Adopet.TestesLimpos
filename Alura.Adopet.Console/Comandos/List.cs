@@ -16,7 +16,7 @@ namespace Alura.Adopet.Console.Comandos
             this.clientPet = clientPet;
         }
 
-        public Task<Result> ExecutarAsync(string[] args)
+        public Task<Result> ExecutarAsync()
         {
             return this.ListaDadosPetsDaAPIAsync();
         }

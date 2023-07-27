@@ -36,12 +36,12 @@ namespace Alura.Adopet.Console.UI
                     ExibirPets(s);
                     break;
                 case SuccessWithDocs d:
-                    ExibeDocumentaao(d);
+                    ExibeDocumentacao(d);
                     break;
             }
         }
 
-        private static void ExibeDocumentaao(SuccessWithDocs documentacaoComando)
+        private static void ExibeDocumentacao(SuccessWithDocs documentacaoComando)
         {
             System.Console.WriteLine($"Adopet (1.0) - Aplicativo de linha de comando (CLI).");
             System.Console.WriteLine($"Realiza a importação em lote de um arquivos de pets.\n");

@@ -10,13 +10,14 @@ namespace Alura.Adopet.Console.Comandos
     internal class Help:IComando
     {
         private Dictionary<string, DocComandoAttribute> docs;
-
-        public Help()
+        private string? comando;
+        public Help(string? comando)
         {
             docs = DocumentacaoDoSistema.ToDictionary(Assembly.GetExecutingAssembly());
+            this.comando = comando;
         }
 
-        public Task<Result> ExecutarAsync(string[] args)
+        public Task<Result> ExecutarAsync()
         {
             try
             {
@@ -29,11 +30,11 @@ namespace Alura.Adopet.Console.Comandos
             }
         }
 
-        private IEnumerable<string> GerarDocumentacao(string[] parametros)
+        private IEnumerable<string> GerarDocumentacao()
         {
             List<string> resultado = new List<string>();
             // se não passou mais nenhum argumento mostra help de todos os comandos
-            if (parametros.Length == 1)
+            if (this.comando is null)
             {
                 foreach (var doc in docs.Values)
                 {
@@ -41,12 +42,12 @@ namespace Alura.Adopet.Console.Comandos
                 }
             }
             // exibe o help daquele comando específico
-            else if (parametros.Length == 2)
+            else
             {
-                string comandoASerExibido = parametros[1];
-                if (docs.ContainsKey(comandoASerExibido))
+  
+                if (docs.ContainsKey(this.comando))
                 {
-                    var comando = docs[comandoASerExibido];
+                    var comando = docs[this.comando];
                     resultado.Add(comando.Documentacao);
                 }
                 else
