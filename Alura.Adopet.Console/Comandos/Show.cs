@@ -18,9 +18,7 @@ namespace Alura.Adopet.Console.Comandos
         {
             try
             {
-                this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]); 
-                return Task.FromResult(Result.Ok());
-
+               return this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]); 
             }
             catch (Exception exception)
             {
@@ -28,14 +26,10 @@ namespace Alura.Adopet.Console.Comandos
             }
         }
 
-        private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)
+        private Task<Result> ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)
         {           
-            var listaDepets = leitor.RealizaLeitura();
-            foreach (var pet in listaDepets)
-            {
-                System.Console.WriteLine(pet);
-            }
-
+            var listaDepets = leitor.RealizaLeitura();       
+            return Task.FromResult(Result.Ok().WithSuccess(new SuccessWithPets(listaDepets, "Exibição do arquivo realizada com sucesso!")));
 
         }
     }
