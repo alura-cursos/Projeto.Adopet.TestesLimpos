@@ -22,7 +22,7 @@ namespace Alura.Adopet.Console.Comandos
             try
             {
                   return Task.FromResult(Result.Ok()
-                    .WithSuccess(new SuccessWithDocs(this.GerarDocumentacao(parametros: args))));
+                    .WithSuccess(new SuccessWithDocs(this.GerarDocumentacao())));
             }
             catch (Exception exception)
             {

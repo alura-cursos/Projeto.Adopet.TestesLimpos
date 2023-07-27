@@ -19,10 +19,9 @@ namespace Alura.Adopet.Testes
             var leitorDeArquivo = LeitorDeArquivosMockBuilder.GetMock(listaDePet);       
               var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().CreateClient("adopet"));
             var import = new Import(httpClientPet,leitorDeArquivo.Object);
-            string[] args = { "import", "lista.csv" };
-            
+             
             //Act
-            await import.ExecutarAsync(args);
+            await import.ExecutarAsync();
             
             //Assert
             var listaPet = await httpClientPet.ListPetsAsync();
