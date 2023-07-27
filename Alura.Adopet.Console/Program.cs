@@ -12,4 +12,3 @@ else
 {
     ConsoleUI.ExibeResultado(Result.Fail("Comando inválido!"));
 }         
-
