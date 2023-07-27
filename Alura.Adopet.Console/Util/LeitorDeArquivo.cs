@@ -23,8 +23,7 @@ namespace Alura.Adopet.Console.Util
             }
             List<Pet> listaDePet = new List<Pet>();
             using (StreamReader sr = new StreamReader(caminhoDoArquivoASerLido))
-            {
-                System.Console.WriteLine("----- Dados a serem importados -----");
+            {               
                 while (!sr.EndOfStream)
                 {
                     // separa linha usando ponto e vírgula
