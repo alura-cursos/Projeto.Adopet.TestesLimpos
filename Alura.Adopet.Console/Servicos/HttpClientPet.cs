@@ -18,7 +18,7 @@ namespace Alura.Adopet.Console.Servicos
             return client.PostAsJsonAsync("pet/add", pet);
         }
 
-        public async Task<IEnumerable<Pet>?> ListPetsAsync()
+        public virtual async Task<IEnumerable<Pet>?> ListPetsAsync()
         {
             HttpResponseMessage response = await client.GetAsync("pet/list");
             return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();

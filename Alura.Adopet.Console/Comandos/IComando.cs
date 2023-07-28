@@ -2,7 +2,7 @@
 
 namespace Alura.Adopet.Console.Comandos
 {
-    internal interface IComando
+    public interface IComando
     {
         Task<Result> ExecutarAsync();
     }

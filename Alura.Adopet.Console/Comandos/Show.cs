@@ -5,7 +5,7 @@ namespace Alura.Adopet.Console.Comandos
 {
     [DocComandoAttribute(instrucao: "show",
        documentacao: "adopet show <ARQUIVO> comando que exibe no terminal o conteúdo do arquivo importado.")]
-    internal class Show:IComando
+    public class Show:IComando
     {
         private readonly LeitorDeArquivo leitor;
 
